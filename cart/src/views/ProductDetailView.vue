@@ -30,7 +30,7 @@ const productStore = useProductStore()
 onMounted(() => {
     
     
-    productStore.getProductDetail(route.params.id )
+    productStore.getProductDetail(route.params.id as string )
     
     
 })

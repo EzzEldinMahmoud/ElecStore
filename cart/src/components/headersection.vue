@@ -24,9 +24,9 @@ const router = useRouter()
 
 function routerRedirect(url: string) {
 
-  if (url == '/cart' && cartCount.value == 0) {
+  if (url == '/cart' && cartStore.getitemCount == 0) {
     return router.replace('/')
-  } else if (url == '/cart' && cartCount.value > 0) {
+  } else if (url == '/cart' && cartStore.getitemCount  > 0) {
     return router.replace('/cart')
   } else {
     return router.replace(url)

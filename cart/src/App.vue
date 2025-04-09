@@ -1,7 +1,7 @@
-<script setup lang="ts">
+<script setup >
 import { RouterLink, RouterView } from 'vue-router'
-import Headersection from './components/Headersection.vue'
-import Footer from './components/footer.vue'
+import Headersection from '@/components/headersection.vue'
+import Footer from '@/components/footer.vue'
 </script>
 
 <template>

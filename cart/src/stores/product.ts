@@ -44,7 +44,7 @@ export const useProductStore = defineStore('product', {
           this.currentPage = 1 // Reset current page to 1 after fetching products
         })
     },
-    async getProductDetail(id: number) {
+    async getProductDetail(id: string) {
       return fetch(`https://fakestoreapi.com/products/${id}`)
         .then((response) => response.json())
         .then((data) => {

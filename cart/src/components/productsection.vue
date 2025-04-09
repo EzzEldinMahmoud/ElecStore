@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import ProductCard from './product/productCard.vue'
 import { ref, onMounted } from 'vue'
 import { useProductStore } from '@/stores/product'
