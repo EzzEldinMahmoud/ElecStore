@@ -59,7 +59,7 @@ const addAndToast = () => {
 </script>
 <template>
     <section class="product-detail-container">
-        <Toast ref="toast"  position="bottom-center"/>
+        <Toast position="bottom-center"/>
         <div class="product-detail">
             <img :src="productStore.getcurrentProduct.image" alt="Product Image" />
             <h1>{{ productStore.getcurrentProduct.title }}</h1>
