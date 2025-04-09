@@ -25,7 +25,7 @@ export const useProductStore = defineStore('product', {
         totalPages: 0,
     }
   }, actions:{
-    getProducts(){
+    async getProducts(){
         return fetch('https://fakestoreapi.com/products')
             .then((response) => response.json())
             .then((data) => {
@@ -44,7 +44,7 @@ export const useProductStore = defineStore('product', {
             });
             
     },
-    getProductDetail(id: number){
+    async getProductDetail(id: number){
         return fetch(`https://fakestoreapi.com/products/${id}`)
             .then((response) => response.json())
             .then((data) => {
@@ -66,11 +66,11 @@ export const useProductStore = defineStore('product', {
         
   }
   , getters: {                                          
-    productList: (state) => [...state.productList].slice(state.currentPage * state.itemsPerPage - state.itemsPerPage, state.currentPage * state.itemsPerPage),
-    currentPage: (state) => state.currentPage,
-    totalPages: (state) => Math.ceil(state.productList.length / state.itemsPerPage),
-    productListAll: (state) => state.productList,
-    currentProduct: (state) => state.currentProduct,
+    products: (state) => [...state.productList].slice(state.currentPage * state.itemsPerPage - state.itemsPerPage, state.currentPage * state.itemsPerPage),
+    getcurrentPage: (state) => state.currentPage,
+    gettotalPages: (state) => Math.ceil(state.productList.length / state.itemsPerPage),
+    getproductAll: (state) => state.productList,
+    getcurrentProduct: (state) => state.currentProduct,
   } 
 
   })

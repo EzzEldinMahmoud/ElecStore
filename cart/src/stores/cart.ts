@@ -1,15 +1,14 @@
-import { ref, computed } from 'vue'
+
 import { defineStore } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 type cartItem = {
   id: number;
-  name: string;
+  image:string;
+  description: string;
+  title: string;
   price: number;
   quantity: number;
 }
-type refCartList = {
-  value: cartItem[];
-}
+
 export const useCartStore = defineStore('cart', {
   state :()=>{
     return {
@@ -19,9 +18,9 @@ export const useCartStore = defineStore('cart', {
     addToCart(item: cartItem) {
       const existingItem = this.cartList.find(cartItem => cartItem.id === item.id);
       if (existingItem) {
-        existingItem.quantity += item.quantity;
+        existingItem.quantity++;
       } else {
-        this.cartList.push({ id: item.id, name: item.name, price: item.price, quantity: item.quantity ?? 1 });
+        this.cartList.push({ id: item.id, title: item.title, price: item.price, quantity: item.quantity ?? 1, image: item.image, description: item.description });
       }
     },
     removeFromCart(itemId: number) {
@@ -43,10 +42,13 @@ export const useCartStore = defineStore('cart', {
     }
   }
   , getters: {
-    cartList: (state) => state.cartList,
-    totalPrice: (state) => {
+    getcart: (state) => state.cartList,
+    gettotalPrice: (state) => {
       return state.cartList.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    }
+    },
+    getitemCount: (state) => {
+      return state.cartList.reduce((total, item) => total + item.quantity, 0);;
+    },
   } ,
   persist: true,
 
