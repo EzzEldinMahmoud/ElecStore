@@ -25,11 +25,11 @@ const router = useRouter()
 function routerRedirect(url: string) {
 
   if (url == '/cart' && cartStore.getitemCount == 0) {
-    return router.replace('/')
+    return router.push('/')
   } else if (url == '/cart' && cartStore.getitemCount  > 0) {
-    return router.replace('/cart')
+    return router.push('/cart')
   } else {
-    return router.replace(url)
+    return router.push(url)
   }
 }
 
