@@ -4,11 +4,14 @@ import { defineProps } from 'vue'
 import { useCartStore } from '@/stores/cart' // Import the cart store
 import routerRedirect from '@/utils/util_service.ts'
 import { useRouter } from 'vue-router' // Import the router for navigation
+import Toast from 'primevue/toast'
+import { useToast } from 'primevue/usetoast' // Import the toast for notifications
+
 defineProps({
   product: Object, // Define the prop
   cart: Boolean,
 })
-
+const toast = useToast() // Create an instance of the toast for notifications
 const cartStore = useCartStore() // Create an instance of the cart store
 const router = useRouter() // Create an instance of the router
 const addToCart = (product) => {
@@ -19,10 +22,15 @@ const addToCart = (product) => {
 const removeFromCart = (id) => {
   cartStore.removeFromCart(id)
 }
+const addAndToast = (product) => {
+  cartStore.addToCart(product)
+  toast.add({ severity: 'success', summary: 'Success', detail: 'Product added to cart', life: 3000 })
+}
 
 </script>
 
 <template>
+  <Toast     position="bottom-center"/>
   <div class="productcard">
     <div class="productimg" @click="routerRedirect(router,'/product/' + product.id)">
       <img :alt="product.title" :src="product.image" width="100%" height="100%" />
@@ -44,7 +52,7 @@ const removeFromCart = (id) => {
         <p class="cart-quantity-control-total">Total ${{Math.round(product.price * product.quantity) }}</p>
       </div>
 
-      <button class="buttonCart" @click="addToCart(product)" v-else>
+      <button class="buttonCart" @click="addAndToast(product)" v-else>
         Add To Cart
         <span class="pi pi-shopping-cart" style="font-size: x-large; color: white"></span>
       </button>
@@ -166,7 +174,4 @@ const removeFromCart = (id) => {
   background-color: #0056b3; /* Darker shade on hover */
 }
 
-.buttonCart:active {
-  background-color: #004494; /* Even darker shade on click */
-}
 </style>
