@@ -53,12 +53,13 @@ const onClose = () => {
       <Panel
         header="Checkout"
         style="
-          height: 250px;
+          height: 300px;
           width: 50%;
-          justify-content: center;
-          padding: 1%;
+          
+          padding: 5px;
           margin: 5px auto;
-          align-items: center;
+          
+          position:relative;
         "
         class="checkout-panel"
       >
@@ -77,7 +78,7 @@ const onClose = () => {
         </Toast>
         <Button
           label="Checkout"
-          style="float: right; background-color: #04045a; border-color: #04045a"
+          style="float: right; background-color: #04045a; border-color: #04045a;bottom:0;position: absolute; bottom: 20px; right: 20px;"
           @click="showTemplate"
         />
       </Panel>
@@ -128,10 +129,12 @@ section {
   gap: 20px; /* Space between items */
   padding: 20px;
 }
+
 @media screen and (max-width: 768px) {
     .checkout-panel{
     width: 100% !important;
     margin: 5% !important;
+    padding: 0;
 }
 }
 </style>
