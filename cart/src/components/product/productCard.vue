@@ -32,11 +32,11 @@ const addAndToast = (product) => {
 <template>
   <Toast     position="bottom-center"/>
   <div class="productcard">
-    <div class="productimg" @click="routerRedirect(router,'/product/' + product.id)">
+    <div class="productimg" @click="router.replace('product/' + product.id)">
       <img :alt="product.title" :src="product.image" width="100%" height="100%" />
     </div>
     <div class="product-detail">
-      <h3 class="productcard-title" @click="routerRedirect(router,'/product/' + product.id)">{{ product.title }}</h3>
+      <h3 class="productcard-title" @click="router.replace('product/' + product.id)">{{ product.title }}</h3>
       <p class="productcard-subtitle">$ {{ product.price }}</p>
       <p class="productcard-content">{{ product.description?.slice(0, 200) }}...</p>
 
