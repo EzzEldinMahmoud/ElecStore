@@ -2,12 +2,15 @@
 import Card from 'primevue/card'
 import { defineProps } from 'vue'
 import { useCartStore } from '@/stores/cart' // Import the cart store
+import routerRedirect from '@/utils/util_service.ts'
+import { useRouter } from 'vue-router' // Import the router for navigation
 defineProps({
   product: Object, // Define the prop
   cart: Boolean,
 })
 
 const cartStore = useCartStore() // Create an instance of the cart store
+const router = useRouter() // Create an instance of the router
 const addToCart = (product) => {
   cartStore.addToCart(product)
 
@@ -16,15 +19,16 @@ const addToCart = (product) => {
 const removeFromCart = (id) => {
   cartStore.removeFromCart(id)
 }
+
 </script>
 
 <template>
   <div class="productcard">
-    <div class="productimg">
+    <div class="productimg" @click="routerRedirect(router,'/product/' + product.id)">
       <img :alt="product.title" :src="product.image" width="100%" height="100%" />
     </div>
     <div class="product-detail">
-      <h3 class="productcard-title">{{ product.title }}</h3>
+      <h3 class="productcard-title" @click="routerRedirect(router,'/product/' + product.id)">{{ product.title }}</h3>
       <p class="productcard-subtitle">$ {{ product.price }}</p>
       <p class="productcard-content">{{ product.description?.slice(0, 200) }}...</p>
 
